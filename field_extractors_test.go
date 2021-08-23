@@ -3,7 +3,6 @@ package fieldextractors
 import (
 	"testing"
 
-	protoV2 "github.com/golang/protobuf/proto"
 	"github.com/stretchr/testify/assert"
 	example "github.com/zendesk/field-extractors-go/protobuf"
 	"google.golang.org/protobuf/types/known/structpb"
@@ -19,7 +18,7 @@ func TestValue(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, "static-id", result)
@@ -33,7 +32,7 @@ func TestValue(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, "static-id", result)
@@ -58,7 +57,7 @@ func TestNested(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -80,7 +79,7 @@ func TestNested(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -97,7 +96,7 @@ func TestNested(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -126,7 +125,7 @@ func TestNested(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -156,7 +155,7 @@ func TestStructField(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -170,7 +169,7 @@ func TestStructField(t *testing.T) {
 		}
 
 		// act
-		result, err := extractor.Extract(protoV2.MessageV2(event))
+		result, err := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -185,7 +184,7 @@ func TestStructField(t *testing.T) {
 		}
 
 		// act
-		result, err := extractor.Extract(protoV2.MessageV2(event))
+		result, err := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -218,7 +217,7 @@ func TestRepeatedItem(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -236,7 +235,7 @@ func TestRepeatedItem(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -263,7 +262,7 @@ func TestRepeatedItem(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -283,7 +282,7 @@ func TestRepeatedItem(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, expectedResult, result)
@@ -299,7 +298,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, int64(123), result)
@@ -317,7 +316,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, int64(123), result)
@@ -334,7 +333,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -351,7 +350,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(protoV2.MessageV2(event))
+		result, _ := extractor.ExtractPath(event)
 
 		// assert
 		assert.Equal(t, cart, result)
@@ -364,7 +363,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(protoV2.MessageV2(event))
+		result, _ := extractor.ExtractPath(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -380,7 +379,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(protoV2.MessageV2(event))
+		result, _ := extractor.ExtractPath(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -393,7 +392,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(protoV2.MessageV2(event))
+		result, _ := extractor.ExtractPath(event)
 
 		// assert
 		assert.Equal(t, "my_feature", result)
@@ -424,7 +423,7 @@ func TestOneOfExractor(t *testing.T) {
 						Id: wrapperspb.Int64(int64(123)),
 					}}}}
 
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		assert.Equal(t, int64(123), result)
 	})
@@ -444,7 +443,7 @@ func TestOneOfExractor(t *testing.T) {
 			"id": int64(123),
 		}
 
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		assert.Equal(t, expectedResult, result)
 	})
@@ -461,7 +460,7 @@ func TestOneOfExractor(t *testing.T) {
 			},
 		}
 
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		assert.Nil(t, result)
 	})
@@ -476,7 +475,7 @@ func TestOneOfExractor(t *testing.T) {
 			Event: nil,
 		}
 
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		assert.Nil(t, result)
 	})
@@ -494,7 +493,7 @@ func TestOneOfExractor(t *testing.T) {
 						Id: wrapperspb.Int64(int64(123)),
 					}}}}
 
-		result, _ := extractor.Extract(protoV2.MessageV2(event))
+		result, _ := extractor.Extract(event)
 
 		assert.Nil(t, result)
 	})
@@ -510,7 +509,7 @@ func TestExractorWithDefault(t *testing.T) {
 
 		event := &example.Order{}
 
-		result, _ := defaultExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := defaultExtractor.Extract(event)
 
 		assert.Equal(t, string("default"), result)
 	})
@@ -524,7 +523,7 @@ func TestExractorWithDefault(t *testing.T) {
 
 		event := &example.Order{}
 
-		result, _ := defaultExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := defaultExtractor.Extract(event)
 
 		assert.Equal(t, int(31), result)
 	})
@@ -550,7 +549,7 @@ func TestExractorWithDefault(t *testing.T) {
 			Lineitems: []*example.LineItem{},
 		}
 
-		result, _ := defaultExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := defaultExtractor.Extract(event)
 
 		assert.Equal(t, []map[string]interface{}{
 			{
@@ -570,7 +569,7 @@ func TestExractorWithDefault(t *testing.T) {
 			Opaque: "",
 		}
 
-		result, _ := defaultExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := defaultExtractor.Extract(event)
 
 		assert.Equal(t, string("default"), result)
 	})
@@ -585,7 +584,7 @@ func TestExractorWithDefault(t *testing.T) {
 			Token: wrapperspb.String("pending"),
 		}
 
-		result, _ := defaultExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := defaultExtractor.Extract(event)
 
 		assert.Equal(t, string("pending"), result)
 	})
@@ -603,7 +602,7 @@ func TestTemplate(t *testing.T) {
 			Id: wrapperspb.Int64(12414),
 		}
 
-		result, _ := templateExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := templateExtractor.Extract(event)
 
 		assert.Equal(t, string("Order updated - 12414"), result)
 	})
@@ -621,7 +620,7 @@ func TestTemplate(t *testing.T) {
 			Token: wrapperspb.String("my token"),
 		}
 
-		result, _ := templateExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := templateExtractor.Extract(event)
 
 		assert.Equal(t, string("Order updated - 12414 : my token"), result)
 	})
@@ -636,7 +635,7 @@ func TestTemplate(t *testing.T) {
 			Id: wrapperspb.Int64(11211),
 		}
 
-		result, _ := templateExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := templateExtractor.Extract(event)
 
 		assert.Equal(t, string("Order updated - %!d(MISSING)"), result)
 	})
@@ -654,7 +653,7 @@ func TestTemplate(t *testing.T) {
 			Token: nil,
 		}
 
-		result, _ := templateExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := templateExtractor.Extract(event)
 
 		assert.Equal(t, string("Order updated - 12414 : %!s(<nil>)"), result)
 	})
@@ -671,7 +670,7 @@ func TestTemplate(t *testing.T) {
 			Id: wrapperspb.Int64(12414),
 		}
 
-		result, _ := templateExtractor.Extract(protoV2.MessageV2(event))
+		result, _ := templateExtractor.Extract(event)
 
 		assert.Equal(t, string("Order updated - 12414 : %!s(<nil>)"), result)
 	})
