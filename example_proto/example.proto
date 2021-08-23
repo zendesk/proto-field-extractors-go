@@ -1,0 +1,47 @@
+syntax = "proto3";
+package zendesk.protobuf.example;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/zendesk/field-extractors-go/protobuf";
+
+message LineItem {
+	google.protobuf.Int64Value id = 1;
+	google.protobuf.Int64Value quantity = 2;
+}
+
+message Cart {
+	google.protobuf.Int64Value id = 1;
+}
+
+message OrderUpdated {
+	google.protobuf.Int64Value id = 1;
+	Cart cart = 2;
+}
+
+message OrderCreated {
+	google.protobuf.Int64Value id = 1;
+	Cart cart = 2;
+}
+
+enum Kind {
+	UNKOWN = 0;
+	KINDA = 1;
+	KINDB = 2;
+}
+
+message Order {
+	google.protobuf.Int64Value id = 1;
+	google.protobuf.StringValue token = 2;
+	google.protobuf.Struct properties = 3;
+	repeated LineItem lineitems = 4;
+	oneof event {
+		OrderUpdated orderupdated = 5;
+		OrderCreated ordercreated = 6;
+	}
+	repeated string list = 7;
+	Cart cart = 8;
+	string opaque = 9;
+	Kind kind = 10;
+}
