@@ -63,3 +63,19 @@ deactivatedAt, err := extractors.OneOf("event.user_deactivated", extractors.Basi
 ```bash
 go get github.com/zendesk/field-extractors-go
 ```
+
+## Running tests
+
+```bash
+go test -v .
+```
+
+## Updating example protobuf messages
+
+Ensure the Go protobuf plugin is available in `PATH`. [Instructions for installing the Go protobuf plugin](https://developers.google.com/protocol-buffers/docs/reference/go-generated#invocation).
+
+Make any required changes to `example_proto/example.proto`
+
+```bash
+protoc --go_out=generated example_proto/example.proto
+```
