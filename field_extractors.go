@@ -171,9 +171,6 @@ func (f BasicField) getPath(in proto.Message, path string, returnBasicType bool)
 	if v, ok := value.(protoreflect.Value); ok {
 		return v.Interface(), nil
 	}
-	if v, ok := value.(proto.Message); ok {
-		return v.ProtoReflect().Interface(), nil
-	}
 	return value, nil
 }
 
