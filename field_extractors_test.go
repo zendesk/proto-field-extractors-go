@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	example "github.com/zendesk/field-extractors-go/internal/protobuf"
+	example "github.com/zendesk/proto-field-extractors-go/internal/protobuf"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
