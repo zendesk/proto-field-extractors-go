@@ -265,6 +265,8 @@ func extractValue(in interface{}) interface{} {
 		return in.GetValue()
 	case *wrapperspb.BoolValue:
 		return in.GetValue()
+	case protoreflect.Value:
+		return in.Interface()
 	default:
 		return in
 	}

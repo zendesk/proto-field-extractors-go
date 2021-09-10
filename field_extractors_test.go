@@ -363,7 +363,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -379,7 +379,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -392,7 +392,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, "my_feature", result)
