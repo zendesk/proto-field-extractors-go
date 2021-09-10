@@ -410,6 +410,19 @@ func TestBasicFieldExtractor(t *testing.T) {
 		// assert
 		assert.Equal(t, "kinda", result)
 	})
+
+	t.Run("extracts an 0 value enum to the string value", func(t *testing.T) {
+		extractor := BasicField("kind")
+		event := &example.Order{
+			Kind: example.Kind_UNKNOWN,
+		}
+
+		// act
+		result, _ := extractor.Extract(event.ProtoReflect().Interface())
+
+		// assert
+		assert.Equal(t, "unknown", result)
+	})
 }
 
 func TestOneOfExractor(t *testing.T) {

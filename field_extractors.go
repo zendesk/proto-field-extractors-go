@@ -178,6 +178,10 @@ func (f BasicField) getProperty(in proto.Message, name string) interface{} {
 	message := in.ProtoReflect()
 	field := message.Descriptor().Fields().ByName(protoreflect.Name(name))
 	if field == nil || !message.Has(field) {
+		// the 0 value of an enum is valid but fails the Has check so handle that explicitly
+		if field != nil && field.Kind() == protoreflect.EnumKind {
+			return strings.ToLower(string(field.Enum().Values().Get(0).Name()))
+		}
 		return nil
 	}
 
