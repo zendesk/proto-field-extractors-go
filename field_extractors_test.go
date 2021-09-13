@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	example "github.com/zendesk/field-extractors-go/internal/protobuf"
+	example "github.com/zendesk/proto-field-extractors-go/internal/protobuf"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
@@ -363,7 +363,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -379,7 +379,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Nil(t, result)
@@ -392,7 +392,7 @@ func TestBasicFieldExtractor(t *testing.T) {
 		}
 
 		// act
-		result, _ := extractor.ExtractPath(event)
+		result, _ := extractor.Extract(event)
 
 		// assert
 		assert.Equal(t, "my_feature", result)
@@ -409,6 +409,19 @@ func TestBasicFieldExtractor(t *testing.T) {
 
 		// assert
 		assert.Equal(t, "kinda", result)
+	})
+
+	t.Run("extracts an 0 value enum to the string value", func(t *testing.T) {
+		extractor := BasicField("kind")
+		event := &example.Order{
+			Kind: example.Kind_UNKNOWN,
+		}
+
+		// act
+		result, _ := extractor.Extract(event.ProtoReflect().Interface())
+
+		// assert
+		assert.Equal(t, "unknown", result)
 	})
 }
 

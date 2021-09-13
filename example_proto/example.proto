@@ -4,7 +4,7 @@ package zendesk.protobuf.example;
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
-option go_package = "github.com/zendesk/field-extractors-go/internal/protobuf";
+option go_package = "github.com/zendesk/proto-field-extractors-go/internal/protobuf";
 
 message LineItem {
 	google.protobuf.Int64Value id = 1;
@@ -26,7 +26,7 @@ message OrderCreated {
 }
 
 enum Kind {
-	UNKOWN = 0;
+	UNKNOWN = 0;
 	KINDA = 1;
 	KINDB = 2;
 }
